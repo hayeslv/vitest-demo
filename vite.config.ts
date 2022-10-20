@@ -1,11 +1,16 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { vitestConfig } from "./vitestConfig"
+import vueJsx from "@vitejs/plugin-vue-jsx"
 
 // https://vitejs.dev/config/
 export default defineConfig({
   test: {
-    ...vitestConfig
+    globals: true,
+    environment: "jsdom",
+    transformMode: {
+      web: [/.tsx$/]
+    }
   },
-  plugins: [vue()]
+  plugins: [vue(), vueJsx()]
 })
